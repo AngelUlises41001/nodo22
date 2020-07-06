@@ -1,0 +1,131 @@
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package nodo2;
+
+import java.util.Scanner;
+
+public class Nodo2 {
+
+   int dato;
+    Nodo2 siguiente;
+    
+    public static void main(String[] args) {
+       Scanner teclado = new Scanner(System.in);
+        int opc = 0;
+        nodo22 p = new nodo22();
+            do{
+                System.out.println("selecciona una opcion: ");
+                System.out.println("1. ingresar nodo");
+                System.out.println("2. mostrar nodo");
+                System.out.println("3. eliminar nodo");
+                System.out.println("4. buscar nodo");
+                System.out.println("5. salir");
+                opc = teclado.nextInt();
+                switch (opc){
+                    case 1:
+                      p.insertarnodo();
+                      break;
+                    case 2:
+                      System.out.println("mostrar nodos");
+                        p.mostrarnodo();
+                        break;
+                    case 3:
+                      p.eliminarnodo();
+                        break;
+                    case 4:
+                      p.buscarnodo();
+                        break;
+                    case 5:
+                        System.out.println("salir");
+                        break;
+                        default: 
+                      System.out.println("opcion no valida");
+                }
+            }while (opc != 5);
+    }
+}
+
+
+………………………………………………………………………………………………………………………………………………………...........................segunda parte clase
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package nodo2;
+
+import java.util.Scanner;
+
+public class nodo22 {
+Scanner tec = new Scanner(System.in);
+    Nodo2 primero;
+    public nodo22 (){
+      primero = null;  
+    }
+    public void insertarnodo(){
+        Nodo2 nuevo = new Nodo2();
+        System.out.print("ingresa un dato: ");
+        nuevo.dato = tec.nextInt();
+        nuevo.siguiente = primero;
+        primero = nuevo;
+    }
+    public void mostrarnodo(){
+        Nodo2 actual = new Nodo2();
+        actual = primero;
+        if(primero != null){
+            while(actual !=null){
+                System.out.println(" "+ actual.dato);
+                actual = actual.siguiente; 
+            }
+        }else{
+            System.out.println("la pila esta vacia");
+        }
+    }
+    public void eliminarnodo(){
+        Nodo2 actual = new Nodo2();
+        actual = primero;
+        boolean encontrar = false;
+        int nodobuscar = tec.nextInt();
+        if(primero != null){
+            while(actual != null && encontrar != true){
+                if(actual.dato == nodobuscar){
+                    if(actual == primero){
+                    primero = primero.siguiente;
+                }
+                    System.out.println("nodo eliminado");
+                    encontrar = true;
+                }
+                actual = actual.siguiente;
+            }if(!encontrar){
+                System.out.println("nodo encontrado");
+            }
+        }else{System.out.println("pila vacia");
+                }
+    }
+     public void buscarnodo(){
+        Nodo2 actual = new Nodo2();
+        actual = primero;
+        boolean encontrar = false;
+        System.out.println("digite el numero a buscar");
+        int nodobuscar = tec.nextInt();
+        if(primero != null && encontrar !=true){
+            int contador=1;
+            while(actual != null){
+                if(actual.dato == nodobuscar){
+                    System.out.println("nodo con el dato "+ actual.dato+" encontrado en la posicion "+  contador+"");
+                    encontrar = true;
+                }
+                actual = actual.siguiente;
+                contador++;
+            }if(!encontrar){
+                System.out.println("nodo no encontrado");
+            }
+        }else{System.out.println("pila vacia");
+                }
+    }   
+}
